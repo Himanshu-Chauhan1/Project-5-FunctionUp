@@ -16,7 +16,7 @@ const authentication = async function (req, res, next) {
         let verifiedtoken = jwt.verify(splitToken[1], "securedprivatekey")
         if (!verifiedtoken) return res.status(400).send({ status: false, message: "token is invalid" })
 
-               let exp = verifiedtoken.exp
+            let exp = verifiedtoken.exp
             let iatNow = Math.floor(Date.now() / 1000)
             if (exp < iatNow) {
                 return res.status(401).send({ status: false, message: 'session expired, please login again' })
